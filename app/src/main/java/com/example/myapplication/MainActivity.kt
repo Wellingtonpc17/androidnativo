@@ -25,19 +25,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            // A Column já garante o alinhamento à direita (End) e no meio (Center)
             Column(
-                modifier = Modifier.background(color = Color.Yellow).fillMaxSize(),
+                modifier = Modifier
+                    .background(color = Color.Yellow)
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.End
             ) {
-                var vlrDoTextField by remember { mutableStateOf("VlrIni") }
-                Text("Pitagoras")
-                Text("Arquimedes")
+                // Estado compartilhado (iniciando vazio para ficar melhor na tela)
+                var vlrDoTextField by remember { mutableStateOf("") }
+
+                // Nomes importantes na história do computador (incluindo mulheres)
+                Text("Ada Lovelace")
+                Text("Alan Turing")
+                Text("Grace Hopper")
+                Text("Charles Babbage")
+                Text("Margaret Hamilton")
+
+                // Campos de texto replicados
                 TextField(vlrDoTextField, {
                     vlrDoTextField = it
                 })
-                OutlinedTextField(vlrDoTextField,{
-                    Log.i("###", it)
+
+                OutlinedTextField(vlrDoTextField, {
+                    Log.i("###", it) // Mantive o seu Log!
                     vlrDoTextField = it
                 })
             }
